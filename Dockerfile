@@ -31,7 +31,7 @@ LABEL org.label-schema.name="prowlarr" \
 
 COPY --from=builder /output/ /
 
-RUN apk add --no-cache libstdc++ libgcc libintl icu-libs sqlite-libs
+RUN apk add --no-cache libstdc++ libgcc libintl icu-libs sqlite-libs xmlstarlet
 
 VOLUME ["/config"]
 
