@@ -5,7 +5,7 @@ on:
       - master
 
 jobs:
-  radarr:
+  prowlarr:
     runs-on: ubuntu-latest
     steps:
       - name: clone
@@ -13,14 +13,14 @@ jobs:
       - name: build
         uses: triptixx/action-docker-build@master
         with:
-          repo: radarr-dev
+          repo: prowlarr-dev
       - name: test
         uses: triptixx/action-docker-test@master
         with:
           verbose: true
-          repo: radarr-dev
+          repo: prowlarr-dev
           run_args: -e API_KEY=gitaction
-          curl: :7878/api/v3/system/status
+          curl: :9696/api/v1/system/status
           curl_opts: --header x-api-key:gitaction
           pipe: |
             jq -r ".version" |
@@ -30,6 +30,6 @@ jobs:
         with:
           docker_username: ${{ secrets.docker_username }}
           docker_password: ${{ secrets.docker_password }}
-          from: radarr-dev
-          repo: ${{ secrets.docker_username }}/radarr
+          from: prowlarr-dev
+          repo: ${{ secrets.docker_username }}/prowlarr
           tags: latest,%label org.label-schema.version | %auto

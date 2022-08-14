@@ -5,7 +5,7 @@ set -eo pipefail
 RED='\033[0;31m'
 RESET='\033[0m'
 
-CONFIG_DIR='/config;/download/media/movies;/download/media/anime/movies'
+CONFIG_DIR='/config'
 
 for DIR in `echo $CONFIG_DIR | tr ';' '\n'`; do
     mkdir -p "$DIR"

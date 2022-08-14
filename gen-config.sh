@@ -6,26 +6,26 @@ RED='\033[0;31m'
 RESET='\033[0m'
 error() { >&2 echo -e "${RED}Error: $@${RESET}"; exit 1; }
 
-CONF_RADARR='/config/config.xml'
-CONF_RADARR_BAK="$(mktemp -u "$CONF_RADARR.bak.XXXXXX")"
+CONF_PROWLARR='/config/config.xml'
+CONF_PROWLARR_BAK="$(mktemp -u "$CONF_PROWLARR.bak.XXXXXX")"
 
-if [ -f "$CONF_RADARR" ]; then
+if [ -f "$CONF_PROWLARR" ]; then
     # Preserve old configuration, in case of ENOSPC or other errors
-    cp "$CONF_RADARR" "$CONF_RADARR_BAK" || error 'Could not backup config file'
+    cp "$CONF_PROWLARR" "$CONF_PROWLARR_BAK" || error 'Could not backup config file'
 fi
 
 getOpt() {
-    xmlstarlet sel -t -c /Config/"$1" "$CONF_RADARR"
+    xmlstarlet sel -t -c /Config/"$1" "$CONF_PROWLARR"
 }
 
 setOpt() {
     # If element exists
-    if xmlstarlet sel -Q -t -c "/Config/$1" "$CONF_RADARR"; then
+    if xmlstarlet sel -Q -t -c "/Config/$1" "$CONF_PROWLARR"; then
         # Update the existing element
-        xmlstarlet ed -O -L -u "/Config/$1" -v "$2" "$CONF_RADARR"
+        xmlstarlet ed -O -L -u "/Config/$1" -v "$2" "$CONF_PROWLARR"
     else
         # Insert a new sub-element
-        xmlstarlet ed -O -L -s /Config -t elem -n "$1" -v "$2" "$CONF_RADARR"
+        xmlstarlet ed -O -L -s /Config -t elem -n "$1" -v "$2" "$CONF_PROWLARR"
     fi
 }
 
@@ -43,8 +43,8 @@ lower() { echo $1 | awk '{print tolower($0)}'; }
 camel() { echo $1 | awk '{print toupper(substr($1,1,1)) tolower(substr($1,2))}'; }
 
 # Create config.xml file and fill in some sane defaults (or fill existing empty file)
-if [ ! -f "$CONF_RADARR" ] || [ ! -s "$CONF_RADARR" ]; then
-    (echo '<Config>'; echo '</Config>') > "$CONF_RADARR"
+if [ ! -f "$CONF_PROWLARR" ] || [ ! -s "$CONF_PROWLARR" ]; then
+    (echo '<Config>'; echo '</Config>') > "$CONF_PROWLARR"
     setOpt AnalyticsEnabled False
     setOpt Branch 'master'
     setOpt BindAddress '*'
@@ -63,8 +63,8 @@ fi
 [ -n "$URL_BASE" ] && setOpt UrlBase "$URL_BASE"
 
 # Format the document pretty :)
-xmlstarlet fo "$CONF_RADARR" >/dev/null
+xmlstarlet fo "$CONF_PROWLARR" >/dev/null
 
 # Finally, remove backup file after successfully creating new one
 # This is done to prevent trampling the config when the disk is full
-rm -f "$CONF_RADARR_BAK"
+rm -f "$CONF_PROWLARR_BAK"

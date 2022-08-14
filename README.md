@@ -1,29 +1,26 @@
-[hub]: https://hub.docker.com/r/loxoo/radarr
-[mbdg]: https://microbadger.com/images/loxoo/radarr
-[git]: https://github.com/triptixx/radarr
-[actions]: https://github.com/triptixx/radarr/actions
+[hub]: https://hub.docker.com/r/loxoo/prowlarr
+[mbdg]: https://microbadger.com/images/loxoo/prowlarr
+[git]: https://github.com/triptixx/prowlarr
+[actions]: https://github.com/triptixx/prowlarr/actions
 
-# [loxoo/radarr][hub]
-[![Layers](https://images.microbadger.com/badges/image/loxoo/radarr.svg)][mbdg]
-[![Latest Version](https://images.microbadger.com/badges/version/loxoo/radarr.svg)][hub]
-[![Git Commit](https://images.microbadger.com/badges/commit/loxoo/radarr.svg)][git]
-[![Docker Stars](https://img.shields.io/docker/stars/loxoo/radarr.svg)][hub]
-[![Docker Pulls](https://img.shields.io/docker/pulls/loxoo/radarr.svg)][hub]
-[![Build Status](https://github.com/triptixx/radarr/workflows/docker%20build/badge.svg)][actions]
+# [loxoo/prowlarr][hub]
+[![Layers](https://images.microbadger.com/badges/image/loxoo/prowlarr.svg)][mbdg]
+[![Latest Version](https://images.microbadger.com/badges/version/loxoo/prowlarr.svg)][hub]
+[![Git Commit](https://images.microbadger.com/badges/commit/loxoo/prowlarr.svg)][git]
+[![Docker Stars](https://img.shields.io/docker/stars/loxoo/prowlarr.svg)][hub]
+[![Docker Pulls](https://img.shields.io/docker/pulls/loxoo/prowlarr.svg)][hub]
+[![Build Status](https://github.com/triptixx/prowlarr/workflows/docker%20build/badge.svg)][actions]
 
 ## Usage
 
 ```shell
 docker run -d \
-    --name=srvradarr \
+    --name=srvprowlarr \
     --restart=unless-stopped \
-    --hostname=srvradarr \
-    -p 7878:7878 \
+    --hostname=srvprowlarr \
+    -p 9696:9696 \
     -v $PWD/config:/config \
-    -v $PWD/medias:/medias \
-    -v $PWD/watchclient:/watch
-    -v $PWD/downloadclient:/download \
-    loxoo/radarr
+    loxoo/prowlarr
 ```
 
 ## Environment
@@ -41,8 +38,7 @@ docker run -d \
 ## Volume
 
 - `/config`       - Server configuration file location.
-- `/medias`       - Location of Media library.
 
 ## Network
 
-- `7878/tcp`      - WebUI.
+- `9696/tcp`      - WebUI.
