@@ -1,15 +1,14 @@
 [hub]: https://hub.docker.com/r/loxoo/prowlarr
-[mbdg]: https://microbadger.com/images/loxoo/prowlarr
-[git]: https://github.com/triptixx/prowlarr
-[actions]: https://github.com/triptixx/prowlarr/actions
+[git]: https://github.com/triptixx/prowlarr/tree/master
+[actions]: https://github.com/triptixx/prowlarr/actions/workflows/main.yml
 
 # [loxoo/prowlarr][hub]
-[![Layers](https://images.microbadger.com/badges/image/loxoo/prowlarr.svg)][mbdg]
-[![Latest Version](https://images.microbadger.com/badges/version/loxoo/prowlarr.svg)][hub]
-[![Git Commit](https://images.microbadger.com/badges/commit/loxoo/prowlarr.svg)][git]
+[![Git Commit](https://img.shields.io/github/last-commit/triptixx/prowlarr/master)][git]
+[![Build Status](https://github.com/triptixx/prowlarr/actions/workflows/main.yml/badge.svg?branch=master)][actions]
+[![Latest Version](https://img.shields.io/docker/v/loxoo/prowlarr/latest)][hub]
+[![Size](https://img.shields.io/docker/image-size/loxoo/prowlarr/latest)][hub]
 [![Docker Stars](https://img.shields.io/docker/stars/loxoo/prowlarr.svg)][hub]
 [![Docker Pulls](https://img.shields.io/docker/pulls/loxoo/prowlarr.svg)][hub]
-[![Build Status](https://github.com/triptixx/prowlarr/workflows/docker%20build/badge.svg)][actions]
 
 ## Usage
 
