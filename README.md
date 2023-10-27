@@ -30,8 +30,8 @@ docker run -d \
 - `$ENABLE_SSL`   - Enable SSL. _default: `false`_
 - `$LOG_LEVEL`    - Logging severity levels. _default: `info`_
 - `$URL_BASE`     - URL Base configuration. _optional_
-- `$SUID`         - User ID to run as. _default: `932`_
-- `$SGID`         - Group ID to run as. _default: `900`_
+- `$SUID`         - User ID to run as. _default: `921`_
+- `$SGID`         - Group ID to run as. _default: `921`_
 - `$TZ`           - Timezone. _optional_
 
 ## Volume
