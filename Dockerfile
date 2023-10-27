@@ -5,7 +5,7 @@ FROM loxoo/alpine:${ALPINE_TAG} AS builder
 
 ARG PROWLARR_VER
 
-### install sonarr
+### install prowlarr
 WORKDIR /output/prowlarr
 RUN apk add --no-cache curl; \
     curl -fsSL "https://prowlarr.servarr.com/v1/update/nightly/updatefile?version=${PROWLARR_VER}&os=linuxmusl&runtime=netcore&arch=x64" \
@@ -22,7 +22,7 @@ RUN chmod +x /output/usr/local/bin/*.sh
 FROM loxoo/alpine:${ALPINE_TAG}
 
 ARG PROWLARR_VER
-ENV SUID=932 SGID=900
+ENV SUID=921 SGID=921
 
 LABEL org.label-schema.name="prowlarr" \
       org.label-schema.description="A docker image for the torznab proxy Prowlarr" \
