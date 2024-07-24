@@ -1,5 +1,5 @@
-ARG ALPINE_TAG=3.18
-ARG PROWLARR_VER=1.10.1.4058
+ARG ALPINE_TAG=3.20
+ARG PROWLARR_VER=1.20.1.4603
 
 FROM loxoo/alpine:${ALPINE_TAG} AS builder
 
@@ -7,8 +7,7 @@ ARG PROWLARR_VER
 
 ### install prowlarr
 WORKDIR /output/prowlarr
-RUN apk add --no-cache curl; \
-    curl -fsSL "https://prowlarr.servarr.com/v1/update/nightly/updatefile?version=${PROWLARR_VER}&os=linuxmusl&runtime=netcore&arch=x64" \
+RUN wget -O- https://github.com/Prowlarr/Prowlarr/releases/download/v${PROWLARR_VER}/Prowlarr.master.${PROWLARR_VER}.linux-musl-core-x64.tar.gz \
         | tar xz --strip-components=1; \
     find . -name '*.mdb' -delete; \
     find ./UI -name '*.map' -delete; \
